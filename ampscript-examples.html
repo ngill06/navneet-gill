@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMPscript Examples</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <h1>AMPscript Examples</h1>
+                <ul>
+                    <li><a href="index.html">Back to Portfolio</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="container section">
+        <h2>AMPscript Code Examples</h2>
+        <p>Here are some examples of AMPscript used in email templates. AMPscript is used for personalization and dynamic content in emails.</p>
+        
+        <!-- AMPscript Example 1 -->
+        <div class="ampscript-example">
+            <h3>Example 1: Personalization</h3>
+            <pre><code>
+%%[
+    VAR @FirstName, @SubscriberKey
+    SET @SubscriberKey = _subscriberkey
+    SET @FirstName = AttributeValue("FirstName")
+]%%
+
+<p>Hi %%=v(@FirstName)=%%,</p>
+<p>Welcome to our newsletter!</p>
+            </code></pre>
+        </div>
+        
+        <!-- AMPscript Example 2 -->
+        <div class="ampscript-example">
+            <h3>Example 2: Conditional Content</h3>
+            <pre><code>
+%%[
+    VAR @OrderAmount
+    SET @OrderAmount = AttributeValue("OrderAmount")
+]%%
+
+%%[ IF @OrderAmount > 100 THEN ]%%
+    <p>Congratulations! You qualify for a special discount.</p>
+%%[ ELSE ]%%
+    <p>Thank you for your purchase. Check out our new arrivals!</p>
+%%[ ENDIF ]%%
+            </code></pre>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Your Name. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
