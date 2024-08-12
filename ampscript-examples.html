@@ -5,59 +5,184 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AMPscript Examples</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f4f4f9;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #4a4a8c, #6b6b9b);
+            color: #fff;
+            padding: 30px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #fff;
+        }
+        h2 {
+            color: #4a4a8c;
+        }
+        .example {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .example h2 {
+            margin-top: 0;
+        }
+        .code {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="container">
             <nav>
-                <h1>AMPscript Examples</h1>
-                <ul>
-                    <li><a href="index.html">Back to Portfolio</a></li>
-                </ul>
+                <h1>AMPscript Samples</h1>
+                <a href="./index.html" class="btn-primary">Back to Portfolio</a>
             </nav>
         </div>
     </header>
 
-    <section class="container section">
-        <h2>AMPscript Code Examples</h2>
-        <p>Here are some examples of AMPscript used in email templates. AMPscript is used for personalization and dynamic content in emails.</p>
-        
-        <!-- AMPscript Example 1 -->
-        <div class="ampscript-example">
-            <h3>Example 1: Personalization</h3>
-            <pre><code>
-%%[
-    VAR @FirstName, @SubscriberKey
-    SET @SubscriberKey = _subscriberkey
-    SET @FirstName = AttributeValue("FirstName")
-]%%
+    <main class="container">
+        <section class="example">
+            <h2>1. Personalized Product Recommendations</h2>
+            <p>This example shows how to recommend products based on subscriber preferences stored in Data Extensions.</p>
+            <div class="code">
+                %%[
+                    VAR @firstName, @subscriberKey, @preferredCategory, @recommendations, @i
 
-<p>Hi %%=v(@FirstName)=%%,</p>
-<p>Welcome to our newsletter!</p>
-            </code></pre>
-        </div>
-        
-        <!-- AMPscript Example 2 -->
-        <div class="ampscript-example">
-            <h3>Example 2: Conditional Content</h3>
-            <pre><code>
-%%[
-    VAR @OrderAmount
-    SET @OrderAmount = AttributeValue("OrderAmount")
-]%%
+                    SET @firstName = AttributeValue("FirstName")
+                    SET @subscriberKey = AttributeValue("_subscriberkey")
+                    SET @preferredCategory = Lookup("SubscriberPreferences", "PreferredCategory", "SubscriberKey", @subscriberKey)
+                    SET @recommendations = LookupRows("ProductCatalog", "Category", @preferredCategory)
 
-%%[ IF @OrderAmount > 100 THEN ]%%
-    <p>Congratulations! You qualify for a special discount.</p>
-%%[ ELSE ]%%
-    <p>Thank you for your purchase. Check out our new arrivals!</p>
-%%[ ENDIF ]%%
-            </code></pre>
-        </div>
-    </section>
+                    IF NOT EMPTY(@firstName) THEN
+                        SET @firstName = AttributeValue("FirstName")
+                    ELSE
+                        SET @firstName = "Valued Member"
+                    ENDIF
+
+                    IF RowCount(@recommendations) > 0 THEN
+                    ]%%
+
+                    %%[ 
+                        FOR @i = 1 TO RowCount(@recommendations) DO 
+                        ]%%
+                        We have the following recommendations for you %%=v(@firstName)=%%:
+                        %%=Field(Row(@recommendations, @i), "ProductName")=%% - %%=Field(Row(@recommendations, @i), "Price")=%%
+                        %%[ NEXT @i 
+                    ]%%
+
+                    %%[ 
+                    ELSE 
+                ]%%
+                We have no recommendations for you at this time.
+                %%[ ENDIF ]%%
+            </div>
+        </section>
+
+        <section class="example">
+            <h2>2. Dynamic Content Based on Subscriber Location</h2>
+            <p>This example customizes content based on the subscriber's location.</p>
+            <div class="code">
+                %%[
+                    VAR @location, @content
+                    SET @location = AttributeValue("Location")
+                    IF @location == "New York" THEN
+                        SET @content = "Check out our latest offers in New York!"
+                    ELSEIF @location == "Los Angeles" THEN
+                        SET @content = "Exclusive deals available in Los Angeles!"
+                    ELSE
+                        SET @content = "Explore our offers nationwide."
+                    ENDIF
+                ]%%
+                %%=v(@content)=%%
+            </div>
+        </section>
+
+        <section class="example">
+            <h2>3. Advanced Subscriber Segmentation</h2>
+            <p>This example segments subscribers based on their purchase history and sends targeted content.</p>
+            <div class="code">
+                %%[
+                    VAR @subscriberKey, @purchaseCount, @segment
+                    SET @subscriberKey = AttributeValue("_subscriberkey")
+                    SET @purchaseCount = Lookup("PurchaseHistory", "PurchaseCount", "SubscriberKey", @subscriberKey)
+                    IF @purchaseCount > 10 THEN
+                        SET @segment = "Loyal Customers"
+                    ELSE
+                        SET @segment = "New Customers"
+                    ENDIF
+                ]%%
+                You are part of the %%=v(@segment)=%% segment.
+            </div>
+        </section>
+
+        <section class="example">
+            <h2>4. Parsing JSON Using AMPscript</h2>
+            <p>This example shows how to parse JSON to extract values.</p>
+            <div class="code">
+                %%[
+                    SET @jsonString = '{ "name": "John Doe", "email": "john.doe@example.com", "subscribed": true }'
+                    
+                    SET @name = ""
+                    SET @email = ""
+                    SET @subscribed = ""
+                    
+                    SET @nameStart = IndexOf(@jsonString, '"name": "') + Length('"name": "')
+                    IF @nameStart > Length('"name": "') THEN
+                        SET @nameEnd = IndexOf(Substring(@jsonString, @nameStart, Length(@jsonString)), '"')
+                        IF @nameEnd > 0 THEN
+                            SET @name = Substring(@jsonString, @nameStart, @nameEnd - @nameStart)
+                        ENDIF
+                    ENDIF
+                    
+                    SET @emailStart = IndexOf(@jsonString, '"email": "') + Length('"email": "')
+                    IF @emailStart > Length('"email": "') THEN
+                        SET @emailEnd = IndexOf(Substring(@jsonString, @emailStart, Length(@jsonString)), '"')
+                        IF @emailEnd > 0 THEN
+                            SET @email = Substring(@jsonString, @emailStart, @emailEnd - @emailStart)
+                        ENDIF
+                    ENDIF
+                    
+                    SET @subscribedStart = IndexOf(@jsonString, '"subscribed": ') + Length('"subscribed": ')
+                    IF @subscribedStart > Length('"subscribed": ') THEN
+                        SET @subscribedEnd = IndexOf(Substring(@jsonString, @subscribedStart, Length(@jsonString)), '}')
+                        IF @subscribedEnd > 0 THEN
+                            SET @subscribed = Substring(@jsonString, @subscribedStart, @subscribedEnd - @subscribedStart)
+                        ENDIF
+                    ENDIF
+                    
+                    OUTPUT(CONCAT("Name: ", @name, " Email: ", @email, " Subscribed: ", @subscribed))
+                ]%%
+            </div>
+        </section>
+    </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Your Name. All rights reserved.</p>
+            <p>&copy; 2024 Navneet Gill. All rights reserved.</p>
         </div>
     </footer>
 </body>
