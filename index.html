@@ -3,22 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of an Email Developer showcasing skills, projects, and experience in email development. Explore examples of work and contact for collaborations.">
     <title>Portfolio</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
 </head>
 <body>
     <header>
         <div class="container">
-            
             <nav>
-                <h1>Email Developer</h1>
-                <ul>
+                <h1>Navneet Gill</h1>
+                <button class="nav-toggle" aria-label="Toggle navigation">
+                    <span class="nav-toggle-icon"></span>
+                </button>
+                <ul class="nav-menu">
                     <li><a href="#about">About</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#skills">Skills</a></li>
-                    <li><a href="email-examples.html">Email Examples</a></li>
-                    <li><a href="ampscript-examples.html">AMPscript Examples</a></li>
+                    <li><a href="email-examples.html" rel="noopener noreferrer">Email Examples</a></li>
+                    <li><a href="ampscript-examples.html" rel="noopener noreferrer">AMPscript Examples</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -27,37 +30,77 @@
 
     <section class="hero">
         <div class="hero-content">
-            <h1>Welcome to My Portfolio</h1>
-            <p>Showcasing my skills, projects, and experience.</p>
+            <h1>Explore My Projects</h1>
+            <p>Explore my skills, projects, and experience in email development and beyond. <br>Here, you'll find examples of my work and a demonstration of my expertise in creating effective and engaging email campaigns.</p>
             <a href="#contact" class="btn-primary">Get in Touch</a>
+            <!-- <a href="path-to-your-resume.pdf" class="btn-primary" download>Download Resume</a> -->
         </div>
     </section>
 
     <section id="about" class="container section">
         <h2>About Me</h2>
         <div class="about-content">
-            <p>Hello! I’m [Your Name], a passionate developer specializing in web development. With expertise in HTML, CSS, and JavaScript, I build responsive and engaging websites. I’m always eager to learn and take on new challenges in the tech world.</p>
+            <p>Hello, I’m <strong>Navneet Gill</strong>, an Email Developer specializing in crafting and optimizing email templates for various clients. My expertise lies in writing clean HTML and CSS code to ensure compatibility across different email clients and devices. I focus on troubleshooting issues related to email rendering, optimizing deliverability, and integrating dynamic content for enhanced functionality. My work ensures that email campaigns perform efficiently and effectively, adhering to best practices in email development.</p>
+
             <p>Here’s a bit more about my journey:</p>
+            <div class="experience">
+                <h4>Digital Platform Engineer</h4>
+                <p><strong>Shift Paradigm, Guelph, ON</strong> | Nov 2021 – Present</p>
+                <ul>
+                    <li>Created custom email templates for transactional messages and newsletter campaigns using HTML5 and CSS for clients such as Sobeys, Petro Canada, Walmart, and Husky.</li>
+                    <li>Designed and executed marketing campaigns using Salesforce Marketing Cloud (SFMC) and other Email Service Providers (ESPs), enhancing communication strategies through SFMC’s Journey Builder and optimizing for various email clients.</li>
+                    <li>Produced responsive and engaging email campaigns, achieving a 25% increase in customer engagement through dynamic content and personalized messaging.</li>
+                </ul>
+            </div>
+            <div class="experience">
+                <h4>Interactive Developer</h4>
+                <p><strong>Trendline Interactive, Guelph, ON</strong> | June 2019 – Nov 2021</p>
+                <ul>
+                    <li>Prepared and optimized HTML files, including links, images, and tracking setups, for clients like Sobeys and Allstate across multiple ESPs, ensuring consistent performance.</li>
+                    <li>Designed and updated web pages, iterated on existing email templates, and conducted thorough QA checks using Email on Acid and Litmus.</li>
+                    <li>Improved production processes, leading to a 20% increase in efficiency through the implementation of new tools and streamlined workflows.</li>
+                </ul>
+            </div>
+            <h3>Education</h3>
+            <div class="education">
+                <p><strong>Bachelor of Computer Engineering</strong> | University of Guelph, Guelph, ON</p>
+                <p>Jan 2015 – Dec 2019</p>
+            </div>
+            <h3>Certifications</h3>
             <ul>
-                <li>Experience with various web technologies and frameworks.</li>
-                <li>Passionate about creating user-friendly and accessible web experiences.</li>
-                <li>Continually improving skills through learning and practical application.</li>
+                <li>Braze Certified Practitioner (Sep 2023)</li>
+                <li>Salesforce Marketing Cloud Email Specialist Certification (In progress)</li>
             </ul>
         </div>
     </section>
 
     <section id="projects" class="container section">
-        <h2>My Projects</h2>
+        <h2>Projects</h2>
         <div class="project-grid">
             <div class="project-card">
-                <img src="https://yourdomain.com/path-to-your-project-image.jpg" alt="Master Template Library">
+                <div class="tile">
+                    <a href="email-examples.html" class="tile-content">
+                        <div class="overlay">Email Examples</div>
+                    </a>
+                </div>
                 <div class="project-info">
-                    <h3>Master Template Library</h3>
-                    <p>Developed a master library of flexible modules and content blocks in Salesforce Marketing Cloud, enabling the creation of 20+ template designs with various designs and color schemes.</p>
-                    <a href="https://yourprojectlink.com" class="btn-secondary">See Example</a>
+                    <h3>Email</h3>
+                    <p>Explore a selection of email templates showcasing various design styles and techniques. Click to view examples.</p><br/>
+                    <a href="email-examples.html" class="btn-secondary">View Email Examples</a>
                 </div>
             </div>
-            <!-- Add more projects here -->
+            <div class="project-card">
+                <div class="tile">
+                    <a href="ampscript-examples.html" class="tile-content">
+                        <div class="overlay">AMPscript Examples</div>
+                    </a>
+                </div>
+                <div class="project-info">
+                    <h3>AMPscript</h3>
+                    <p>Discover examples of AMPscript used in email campaigns, demonstrating advanced dynamic content and personalization techniques. Click to view examples.</p>
+                    <a href="ampscript-examples.html" class="btn-secondary">View AMPscript Examples</a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -71,8 +114,15 @@
             <div class="skill">Salesforce Marketing Cloud</div>
             <div class="skill">Marketo</div>
             <div class="skill">Braze</div>
+            <div class="skill">Email Testing (Litmus, Email on Acid)</div>
+            <div class="skill">Responsive Design</div>
+            <div class="skill">A/B Testing</div>
+            <div class="skill">Graphic Design (Adobe XD, Figma, Sketch, Adobe Illustrator)</div>
+            <div class="skill">Project Management</div>
+            <div class="skill">Communication</div>
         </div>
     </section>
+
 
     <section id="contact" class="container section">
         <h2>Contact Me</h2>
@@ -99,8 +149,19 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Your Name. All rights reserved.</p>
+            <p>&copy; 2024 Navneet Gill. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navToggle = document.querySelector('.nav-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+
+            navToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        });
+    </script>
 </body>
 </html>
