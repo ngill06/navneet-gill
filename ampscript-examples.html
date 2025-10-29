@@ -138,46 +138,6 @@
                 You are part of the %%=v(@segment)=%% segment.
             </div>
         </section>
-
-        <section class="example">
-            <h2>4. Parsing JSON Using AMPscript</h2>
-            <p>This example shows how to parse JSON to extract values.</p>
-            <div class="code">
-                %%[
-                    SET @jsonString = '{ "name": "John Doe", "email": "john.doe@example.com", "subscribed": true }'
-                    
-                    SET @name = ""
-                    SET @email = ""
-                    SET @subscribed = ""
-                    
-                    SET @nameStart = IndexOf(@jsonString, '"name": "') + Length('"name": "')
-                    IF @nameStart > Length('"name": "') THEN
-                        SET @nameEnd = IndexOf(Substring(@jsonString, @nameStart, Length(@jsonString)), '"')
-                        IF @nameEnd > 0 THEN
-                            SET @name = Substring(@jsonString, @nameStart, @nameEnd - @nameStart)
-                        ENDIF
-                    ENDIF
-                    
-                    SET @emailStart = IndexOf(@jsonString, '"email": "') + Length('"email": "')
-                    IF @emailStart > Length('"email": "') THEN
-                        SET @emailEnd = IndexOf(Substring(@jsonString, @emailStart, Length(@jsonString)), '"')
-                        IF @emailEnd > 0 THEN
-                            SET @email = Substring(@jsonString, @emailStart, @emailEnd - @emailStart)
-                        ENDIF
-                    ENDIF
-                    
-                    SET @subscribedStart = IndexOf(@jsonString, '"subscribed": ') + Length('"subscribed": ')
-                    IF @subscribedStart > Length('"subscribed": ') THEN
-                        SET @subscribedEnd = IndexOf(Substring(@jsonString, @subscribedStart, Length(@jsonString)), '}')
-                        IF @subscribedEnd > 0 THEN
-                            SET @subscribed = Substring(@jsonString, @subscribedStart, @subscribedEnd - @subscribedStart)
-                        ENDIF
-                    ENDIF
-                    
-                    OUTPUT(CONCAT("Name: ", @name, " Email: ", @email, " Subscribed: ", @subscribed))
-                ]%%
-            </div>
-        </section>
     </main>
 
     <footer>
